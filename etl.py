@@ -8,12 +8,12 @@ from sql_queries import *
 
 def process_song_file(cur, filepath):
 
-'''This function opens the song file, then inserts a song record and an artist recordr
-There are 2 arguments:
+    '''This function opens the song file, then inserts a song record and an artist recordr
+    There are 2 arguments:
 
-- cur: which allows Python code to execute PostgreSQL command in a database session.
-- filepath: path of the file we want to get the song and artist data from.
-'''
+    - cur: which allows Python code to execute PostgreSQL command in a database session.
+    - filepath: path of the file we want to get the song and artist data from.
+    '''
 
     # open song file
     df = pd.read_json(filepath, lines=True)
@@ -30,14 +30,14 @@ There are 2 arguments:
 
 def process_log_file(cur, filepath):
 
-'''This function opens the log  file, then filters by NextSong, converts timestamp column 
-into datetime, then inserts the time data records by iterating over the time_df dataframe.
-After this we load a user table and insert the user and songplay records.
-There are 2 arguments:
+    '''This function opens the log  file, then filters by NextSong, converts timestamp column 
+    into datetime, then inserts the time data records by iterating over the time_df dataframe.
+    After this we load a user table and insert the user and songplay records.
+    There are 2 arguments:
 
-- cur: which allows Python code to execute PostgreSQL command in a database session.
-- filepath: path of the file we want to get the data from.
-'''
+    - cur: which allows Python code to execute PostgreSQL command in a database session.
+    - filepath: path of the file we want to get the data from.
+    '''
 
     # open log file
     df = pd.read_json(filepath,lines=True)
@@ -87,16 +87,16 @@ There are 2 arguments:
 
 def process_data(cur, conn, filepath, func):
 
-'''This function gets all the file from the direxctory and add it to a empty array.
-It then finds the number of files that we found. And then i itirates over the files and process it.
+    '''This function gets all the file from the direxctory and add it to a empty array.
+    It then finds the number of files that we found. And then i itirates over the files and process it.
 
-There are 4 arguments:
+    There are 4 arguments:
 
-- cur: which allows Python code to execute PostgreSQL command in a database session.
-- conn: The connedtion to the database
-- filepath: path of the file we want to get the data from.
-- func: the function we want to run. song or log.
-'''
+    - cur: which allows Python code to execute PostgreSQL command in a database session.
+    - conn: The connedtion to the database
+    - filepath: path of the file we want to get the data from.
+    - func: the function we want to run. song or log.
+    '''
     # get all files matching extension from directory
     all_files = []
     for root, dirs, files in os.walk(filepath):
@@ -116,9 +116,9 @@ There are 4 arguments:
 
 
 def main():
-'''
-Main is where we put everything together and we process all the data.
-'''
+    '''
+    Main is where we put everything together and we process all the data.
+    '''
     conn = psycopg2.connect("host=127.0.0.1 dbname=sparkifydb user=student password=student")
     cur = conn.cursor()
 
